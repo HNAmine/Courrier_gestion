@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 @Entity
 public class Division implements Serializable {
 
@@ -52,11 +55,13 @@ public class Division implements Serializable {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-
+	
+	@JsonIgnore
 	public Collection<Service> getServices() {
 		return services;
 	}
-
+	
+	@JsonSetter
 	public void setServices(Collection<Service> services) {
 		this.services = services;
 	}

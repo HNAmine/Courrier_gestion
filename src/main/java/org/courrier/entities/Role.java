@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 @Entity
 public class Role implements Serializable {
 
@@ -22,10 +25,12 @@ public class Role implements Serializable {
 	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
 	private Collection<Employe> employes;
 
+	@JsonIgnore
 	public Collection<Employe> getEmployes() {
 		return employes;
 	}
 
+	@JsonSetter
 	public void setEmployes(Collection<Employe> employes) {
 		this.employes = employes;
 	}
