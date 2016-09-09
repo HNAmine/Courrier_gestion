@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 @Entity
 public class Employe implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -65,11 +68,13 @@ public class Employe implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-
+	
+	@JsonIgnore
 	public Collection<Compte> getComptes() {
 		return comptes;
 	}
-
+	
+	@JsonSetter
 	public void setComptes(Collection<Compte> comptes) {
 		this.comptes = comptes;
 	}

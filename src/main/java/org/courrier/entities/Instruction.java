@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 @Entity
 public class Instruction implements Serializable {
 
@@ -55,10 +58,12 @@ public class Instruction implements Serializable {
 		this.label = label;
 	}
 
+	@JsonIgnore
 	public Collection<CourrierArriver> getCourriers() {
 		return courriers;
 	}
 
+	@JsonSetter
 	public void setCourriers(Collection<CourrierArriver> courriers) {
 		this.courriers = courriers;
 	}

@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 @Entity
 public class Traitement implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -61,6 +64,16 @@ public class Traitement implements Serializable {
 
 	public void setLienDoc(String lienDoc) {
 		this.lienDoc = lienDoc;
+	}
+
+	@JsonIgnore
+	public Collection<CourrierArriver> getCourriers() {
+		return courriers;
+	}
+
+	@JsonSetter
+	public void setCourriers(Collection<CourrierArriver> courriers) {
+		this.courriers = courriers;
 	}
 
 }

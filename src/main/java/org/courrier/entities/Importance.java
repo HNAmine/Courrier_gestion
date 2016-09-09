@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 @Entity
 public class Importance implements Serializable {
 
@@ -51,6 +54,16 @@ public class Importance implements Serializable {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}
+
+	@JsonIgnore
+	public Collection<CourrierArriver> getCourriers() {
+		return courriers;
+	}
+
+	@JsonSetter
+	public void setCourriers(Collection<CourrierArriver> courriers) {
+		this.courriers = courriers;
 	}
 
 }
