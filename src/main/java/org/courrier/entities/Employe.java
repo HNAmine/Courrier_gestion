@@ -3,6 +3,7 @@ package org.courrier.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -31,10 +32,21 @@ public class Employe implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "CODE_ROLE")
 	private Role role;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "CODE_SERVICE")
 	private Service service;
+
+	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL)
+	private Collection<Affecter> affecters;
+
+	public Collection<Affecter> getAffecters() {
+		return affecters;
+	}
+
+	public void setAffecters(Collection<Affecter> affecters) {
+		this.affecters = affecters;
+	}
 
 	protected Employe(String nomEmploye, String telEmploye) {
 		super();
@@ -68,12 +80,12 @@ public class Employe implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
+
 	@JsonIgnore
 	public Collection<Compte> getComptes() {
 		return comptes;
 	}
-	
+
 	@JsonSetter
 	public void setComptes(Collection<Compte> comptes) {
 		this.comptes = comptes;
