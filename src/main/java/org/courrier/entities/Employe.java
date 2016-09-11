@@ -40,14 +40,6 @@ public class Employe implements Serializable {
 	@OneToMany(mappedBy = "employe", cascade = CascadeType.ALL)
 	private Collection<Affecter> affecters;
 
-	public Collection<Affecter> getAffecters() {
-		return affecters;
-	}
-
-	public void setAffecters(Collection<Affecter> affecters) {
-		this.affecters = affecters;
-	}
-
 	protected Employe(String nomEmploye, String telEmploye) {
 		super();
 		this.nomEmploye = nomEmploye;
@@ -63,6 +55,16 @@ public class Employe implements Serializable {
 
 	protected Employe() {
 		super();
+	}
+
+	@JsonIgnore
+	public Collection<Affecter> getAffecters() {
+		return affecters;
+	}
+
+	@JsonSetter
+	public void setAffecters(Collection<Affecter> affecters) {
+		this.affecters = affecters;
 	}
 
 	public Service getService() {

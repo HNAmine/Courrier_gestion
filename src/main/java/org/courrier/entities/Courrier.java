@@ -13,6 +13,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -87,10 +89,12 @@ public abstract class Courrier implements Serializable {
 		this.lienImage = lienImage;
 	}
 
+	@JsonIgnore
 	public Collection<Affecter> getAffecters() {
 		return affecters;
 	}
 
+	@JsonSetter
 	public void setAffecters(Collection<Affecter> affecters) {
 		this.affecters = affecters;
 	}

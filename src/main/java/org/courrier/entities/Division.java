@@ -3,6 +3,7 @@ package org.courrier.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Division implements Serializable {
 	private Long idDivision;
 	private String label;
 
-	@OneToMany(mappedBy = "division")
+	@OneToMany(mappedBy = "division", cascade = CascadeType.ALL)
 	private Collection<Service> services;
 
 	public Division(Long idDivision, String label) {
